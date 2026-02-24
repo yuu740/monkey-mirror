@@ -39,16 +39,25 @@ while cap.isOpened():
         if len(kpts) > 10:
             nose = kpts[0]
             eye_l, eye_r = kpts[1], kpts[2]
+            ear_l, ear_r = kpts[3], kpts[4]
             wrist_l, wrist_r = kpts[9], kpts[10]
             
             eye_dist = get_dist(eye_l, eye_r) + 1e-6 
+            
+            dist_x_l = abs(wrist_l[0] - ear_l[0])
+            dist_x_r = abs(wrist_r[0] - ear_r[0])
+            
+            is_aha_l = wrist_l[1] < eye_l[1] - (eye_dist * 0.5) and dist_x_l > (eye_dist * 0.3)
+            is_aha_r = wrist_r[1] < eye_r[1] - (eye_dist * 0.5) and dist_x_r > (eye_dist * 0.3)
 
-            aha_val = max(0, (eye_l[1] - wrist_l[1]), (eye_r[1] - wrist_r[1]))
-            scores["AHA"] = min(100, int((aha_val / eye_dist) * 100))
-
+            if is_aha_l or is_aha_r:
+                aha_val = max(0, (eye_l[1] - wrist_l[1]), (eye_r[1] - wrist_r[1]))
+                scores["AHA"] = min(100, int((aha_val / eye_dist) * 120))
+            
             dist_to_nose = min(get_dist(wrist_l, nose), get_dist(wrist_r, nose))
-            scores["THINKING"] = min(100, int(max(0, 100 - (dist_to_nose / eye_dist) * 50)))
-
+            if dist_to_nose < eye_dist * 0.8: 
+                scores["THINKING"] = min(100, int(max(0, 100 - (dist_to_nose / eye_dist) * 80)))
+            
             mouth_y, mouth_x = int(nose[1] + eye_dist*0.5), int(nose[0])
             roi_h, roi_w = int(eye_dist), int(eye_dist)
             if 0 < mouth_y < h-roi_h and 0 < mouth_x < w-roi_w:
