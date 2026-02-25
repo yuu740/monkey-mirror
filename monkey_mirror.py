@@ -54,15 +54,19 @@ while cap.isOpened():
             nose_tip = (face[164].x * w, face[164].y * h) # Nose
             ear_ref = (face[454].x * w, face[454].y * h) # Right ear
             
-            # AHA
-            if index_tip[1] < face[10].y * h:
-                dist_to_ear = get_dist(index_tip, ear_ref)
-                scores["AHA"] = min(100, int(max(0, 100 - (dist_to_ear / eye_dist) * 100)))
+            # AHA Logic (Near side of head)
+            ear_l = (face[234].x * w, face[234].y * h)
+            ear_r = (face[454].x * w, face[454].y * h)
+            dist_to_ears = min(get_dist(index_tip, ear_l), get_dist(index_tip, ear_r))
+            
+            if index_tip[1] < face[1].y * h: 
+                scores["AHA"] = min(100, int(max(0, 100 - (dist_to_ears / eye_dist) * 65)))
 
-            # THINKING
+            # THINKING Logic (Near mouth center)
+            nose_tip = (face[164].x * w, face[164].y * h)
             dist_to_mouth = get_dist(index_tip, nose_tip)
             scores["THINKING"] = min(100, int(max(0, 100 - (dist_to_mouth / eye_dist) * 120)))
-
+            
     # Parameter threshold 35%
     top_state = max(scores, key=scores.get)
     if scores[top_state] > 35:
