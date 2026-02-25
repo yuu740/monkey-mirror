@@ -1,6 +1,7 @@
-import cv2
+import cv2, sys, os
 import mediapipe as mp
 import numpy as np
+
 
 # Init mp 
 mp_hands = mp.solutions.hands
@@ -8,11 +9,18 @@ mp_face = mp.solutions.face_mesh
 hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.7)
 face_mesh = mp_face.FaceMesh(refine_landmarks=True, min_detection_confidence=0.7)
 
-# Read assets
-img_default = cv2.imread("./assets/monkey-default.jpg")
-img_scream = cv2.imread("./assets/monkey-scream.jpg")
-img_thinking = cv2.imread("./assets/monkey-thinking.jpg")
-img_aha = cv2.imread("./assets/monkey-aha.jpg")
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+# Image Assets
+img_default = cv2.imread(resource_path("assets/monkey-default.jpg"))
+img_scream = cv2.imread(resource_path("assets/monkey-scream.jpg"))
+img_thinking = cv2.imread(resource_path("assets/monkey-thinking.jpg"))
+img_aha = cv2.imread(resource_path("assets/monkey-aha.jpg"))
 
 def get_dist(p1, p2):
     return np.linalg.norm(np.array(p1) - np.array(p2))
