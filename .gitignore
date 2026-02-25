@@ -1,2 +1,5 @@
 *.pt
 venv
+*.spec
+build
+dist
