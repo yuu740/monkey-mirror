@@ -13,7 +13,8 @@
 
 ## 🛠️ Gesture Logic & Mathematics
 The application calculates states based on spatial coordinates and the Euclidean distance formula:
-$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$
+
+$$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
 
 **Gesture Triggers**:
 - _**AHA!**_: Triggered when the index finger tip is above eye level and near the ear region (Left or Right).
