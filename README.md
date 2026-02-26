@@ -1,4 +1,6 @@
-# 🐒 Monkey Mirror Ultra Precision
+<h1 align="center">Monkey Mirror Ultra Precision</h1>
+<h3 align="center">🙈🙉🙊</h3>
+
 **Monkey Mirror Ultra Precision** is an interactive AI-powered application that transforms your real-time facial expressions and hand gestures into legendary monkey memes. Unlike standard pose detection, this app utilizes high-precision landmarks to capture specific finger movements and lip distancing.
 
 
@@ -61,7 +63,7 @@ To share this app as a single file that doesn't require a Python installation, f
 
 
 ##  💬 Feedback & Contributions
-Feedback is highly appreciated! If you encounter issues with detection sensitivity or have ideas for new monkey states, feel free to Open an Issue or submit a Pull Request.
+Feedback is highly appreciated! If you encounter issues with detection sensitivity or have ideas for new monkey states, feel free to Open an Issue
 
 #### 🚩 How to Report a Bug or Request a Feature
 If you find a bug (e.g., the "Aha" state is flickering) or have a cool idea (e.g., adding sound effects), please follow these steps:
@@ -74,17 +76,4 @@ If you find a bug (e.g., the "Aha" state is flickering) or have a cool idea (e.g
 
 - Describe the issue or feature in detail and click Submit new issue.
 
-#### 🛠️ How to Submit a Pull Request
-Want to improve the code or fix a bug yourself? Follow this standard open-source workflow:
 
-- Fork the Project (Click the 'Fork' button at the top right of this page).
-
-- Clone your fork to your local machine.
-
-- Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
-
-- Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-
-- Push to the branch (`git push origin feature/AmazingFeature`).
-
-- Open a Pull Request from your fork's page back to this original repository.
